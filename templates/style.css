@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+.bg-container {
+    background-image: url("https://images.unsplash.com/photo-1591161555818-7b9debeccc07?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsYWNrJTIwYmFieXxlbnwwfHwwfHw%3D&w=1000&q=80");
+    background-size: cover;
+    height: 100vh;
+}
+
+.text-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    text-align: center;
+    margin: 12px;
+
+}
+
+.text-head {
+    font-family: Bree Serif;
+    color: #f19116;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.text-para {
+    font-family: Bree Serif;
+    color: #7b8794;
+    font-size: 10px;
+}
+
+.bn {
+    background-color: #f19116;
+    font-family: Roboto;
+    color: #ffffff;
+    padding: 8px;
+
+}
+
+.bg2 {
+    background-color: #222222;
+    height: 100vh;
+}
+
+.img-pro {
+    height: 112px;
+    width: 126px;
+}
+
+.card-head {
+    font-family: Roboto;
+    color: #0f0e46;
+    font-size: 18px;
+    padding: 5px;
+    font-weight: bold;
+}

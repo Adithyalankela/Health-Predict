@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Fetal Health Prediction</title>
+
+  <style>
+    body {
+      background-color: grey;
+      color: white;
+      font-family: 'Bree Serif', serif;
+    }
+
+    .navbar-default {
+      background-color: grey;
+      border-color: #f19116;
+    }
+
+    .navbar-default .navbar-brand {
+      color: white;
+      font-size: 32px; /* Increased size for navbar header */
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: #f19116;
+    }
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+      background-color: transparent;
+    }
+
+    .form-group label {
+      color: white;
+    }
+
+    .form-control {
+      background-color: #3d3d3d;
+      border: 2px solid black; /* Added border for input fields */
+      color: white;
+    }
+
+    .btn-success {
+      background-color: #f19116;
+      border-color: #f19116;
+    }
+
+    .btn-success:hover {
+      background-color: #e17e00;
+      border-color: #e17e00;
+    }
+
+    /* Added border for forms */
+    #registration_form, #login_form {
+      border: 2px solid #f19116;
+      border-radius:8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar navbar-default">
+  <div class="navbar-header">
+    <h1 class="navbar-brand center">FETAL HEALTH PREDICTION</h1>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+        </div>
+        <button type="button" id="register" name="register" class="btn btn-success">Register Now</button>
+      </form>
+    </div><!-- end col -->
+    <div class="col-sm-6">
+      <form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="login_password" id="login_password" class="form-control" placeholder="Enter your password">
+        </div>
+        <button type="button" id="login" name="login" class="btn btn-success">Login</button>
+      </form>
+    </div><!-- end col -->
+  </div><!--  end row -->
+</div>
+<br>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    /*const firebaseConfig = {
+      apiKey: "AIzaSyB4Z71YW8OGtcsh-tiazaqYC7BS05pTxi4",
+      authDomain: "shinerweb-auth.firebaseapp.com",
+      projectId: "shinerweb-auth",
+      storageBucket: "shinerweb-auth.appspot.com",
+      messagingSenderId: "487776642853",
+      appId: "1:487776642853:web:25b4821e77c6de7e90dccc",
+      measurementId: "G-00FGRRF868"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
+    console.log(app);*/
+//old firebase
+    /*const firebaseConfig = {
+      apiKey: "AIzaSyCvopoqToUbDD-Lg4mVe6DPUU6sj9y5u3w",
+      authDomain: "fetal-health-52996.firebaseapp.com",
+      projectId: "fetal-health-52996",
+      storageBucket: "fetal-health-52996.appspot.com",
+      messagingSenderId: "338763872922",
+      appId: "1:338763872922:web:be8e5f697ee45d26c4bd23",
+      measurementId: "G-9S16XGW96Q"
+    };*/
+//new firebase credentials
+    const firebaseConfig = {
+  apiKey: "AIzaSyAusNPVWOw0qqol8JJLyniAxtMnEiJ1xVo",
+    authDomain: "fetal-health-2b0af.firebaseapp.com",
+    projectId: "fetal-health-2b0af",
+    storageBucket: "fetal-health-2b0af.appspot.com",
+    messagingSenderId: "790216330828",
+    appId: "1:790216330828:web:97337fec5fa89830bf2ee9",
+    measurementId: "G-WFWR03CEH1"
+  };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
+    console.log(app);
+
+
+
+    //----- New Registration code start	  
+    document.getElementById("register").addEventListener("click", function() {
+      var email =  document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      //For new registration
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        alert("Registration successfully!!");
+
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorMessage);
+        alert(error);
+      });		  		  
+    });
+    //----- End
+
+    //----- Login code start	  
+    document.getElementById("login").addEventListener("click", function() {
+      var email =  document.getElementById("login_email").value;
+      var password = document.getElementById("login_password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        alert(user.email+" Login successfully!!!");
+        window.location.href = "/welcome";
+        document.getElementById('logout').style.display = 'block';
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        alert(errorMessage);
+      });		  		  
+    });
+    //----- End
+
+    //----- Logout code start	  
+    document.getElementById("logout").addEventListener("click", function() {
+      signOut(auth).then(() => {
+        // Sign-out successful.
+        console.log('Sign-out successful.');
+        alert('Sign-out successful.');
+        document.getElementById('logout').style.display = 'none';
+      }).catch((error) => {
+        // An error happened.
+        console.log('An error happened.');
+      });		  		  
+    });
+    //----- End
+
+  </script>
+
+
+
+</body>
+</html>
